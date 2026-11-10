@@ -67,7 +67,9 @@
 
 `molecule test -s podman` проходит успешно (12 действий, 7 успешных, 5 отсутствующих playbook'ов — это норма). `tox` также завершается успешно за 84 секунды с сообщением `molecule: OK` и `congratulations :)`.
 
-**Скриншот:** `images/04-tox.png`.
+**Скриншот:**
+
+![Alt text](images/04-tox.png)
 
 ---
 
@@ -88,7 +90,9 @@
 
 `molecule test -s lighthouse` проходит полностью: 12 действий, 8 успешных, `failed=0`. Идемпотентность подтверждена, verify зелёный.
 
-**Скриншот:** `images/05-lighthouse-role-test.png`.
+**Скриншот:**
+
+![Alt text](images/05-lighthouse-role-test.png)
 
 **Тег:** `v1.2.0` в `lighthouse-role`.
 
@@ -115,7 +119,11 @@
 
 `molecule test -s stack` проходит полностью: 12 действий, 8 успешных, `failed=0`. Все три хоста в `PLAY RECAP` с `failed=0`. Ключевая проверка `Assert integration works (ClickHouse version via LightHouse proxy)` вернула `All assertions passed` — это доказывает, что весь стек работает совместно.
 
-**Скриншоты:** `images/06-stack-test.png`, `images/07-stack-verify.png`.
+**Скриншоты:**
+
+![Alt text](images/06-stack-test.png)
+
+![Alt text](images/07-stack-verify.png)
 
 **Тег:** `v1.3.0` в `vector-role`.
 
@@ -132,20 +140,6 @@
 **Кроссплатформенность ролей.** В `lighthouse-role` все RedHat-специфичные операции (SELinux, `lineinfile` для дефолтного server) обёрнуты в `when: ansible_os_family == 'RedHat'`. На Ubuntu выполняются другие задачи — удаление `sites-enabled/default`. Это стандартный паттерн для ролей, работающих на нескольких дистрибутивах.
 
 **Полный путь к бинарнику в verify.** В контейнерах `PATH` для root может не содержать `/usr/local/bin`. Поэтому в `verify.yml` используются `{{ vector_bin }} --version` и `{{ vector_bin }} validate …` с полным путём, а не просто `vector`.
-
----
-
-## 🖼️ Скриншоты
-
-| Файл | Что показано |
-|---|---|
-| `images/01-molecule-converge.png` | `molecule converge` (default) — 8 изменений на обоих хостах |
-| `images/02-molecule-verify.png` | `molecule verify` (default) — 8 из 8 assert-проверок |
-| `images/03-molecule-test.png` | `molecule test` (default) — `SCENARIO RECAP … failed=0` |
-| `images/04-tox.png` | `tox` — `molecule: OK` за 84 секунды |
-| `images/05-lighthouse-role-test.png` | `molecule test -s lighthouse` — `failed=0` |
-| `images/06-stack-test.png` | `molecule test -s stack` — `failed=0` |
-| `images/07-stack-verify.png` | `PLAY RECAP` с тремя хостами, все `failed=0` |
 
 ---
 
