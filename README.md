@@ -40,7 +40,13 @@
 
 Сценарий `molecule test` проходит полностью: создание двух контейнеров, применение роли (8 изменений на каждом), проверка идемпотентности (`changed=0`), 8 из 8 assert-проверок на обоих дистрибутивах, удаление контейнеров. Итог — `failed=0`.
 
-**Скриншоты:** `images/01-molecule-converge.png`, `images/02-molecule-verify.png`, `images/03-molecule-test.png`.
+**Скриншоты:** 
+
+![Alt text](images/01-molecule-converge.png)
+
+![Alt text](images/02-molecule-verify.png)
+
+![Alt text](images/images/03-molecule-test.png)
 
 ---
 
