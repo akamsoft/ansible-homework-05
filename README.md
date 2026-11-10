@@ -113,6 +113,32 @@ default : actions=12  successful=7  missing=6  failed=0
 - ✅ `molecule test` проходит полностью, включая **idempotence**
 - ✅ Тег `v1.0.0` на коммите с рабочим сценарием
 
+## Tox + облегчённый Podman-сценарий
+
+### Что сделано
+
+1. Установлены `tox`, `molecule`, `molecule-plugins[podman]`, `ansible-core` на хосте `dev-vm`.
+2. Создан облегчённый сценарий `molecule/podman/` — только Ubuntu, минимум проверок:
+   - `molecule.yml` — драйвер `podman`, одна платформа `instance-ubuntu`;
+   - `create.yml` — создаёт контейнер через `containers.podman.podman_container` и генерирует inventory с `ansible_connection: containers.podman.podman`;
+   - `destroy.yml` — удаляет контейнер (`force_delete: true`);
+   - `converge.yml` — применяет роль `vector-role`;
+   - `verify.yml` — 2 assert-проверки (бинарник + сервис).
+3. Создан `tox.ini`:
+
+   ```ini
+   [tox]
+   envlist = molecule
+   skipsdist = true
+
+   [testenv]
+   deps =
+       molecule
+       molecule-plugins[podman]
+       ansible-core
+   commands =
+       molecule test -s podman
+
 ## 📤 Ссылки
 
 - **Роль с тестом:** https://github.com/akamsoft/vector-role/tree/main/molecule
