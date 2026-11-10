@@ -46,7 +46,7 @@
 
 ![Alt text](images/02-molecule-verify.png)
 
-![Alt text](images/images/03-molecule-test.png)
+![Alt text](images/03-molecule-test.png)
 
 ---
 
