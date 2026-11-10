@@ -1,7 +1,9 @@
 # Домашнее задание к занятию 5 «Тестирование roles»
 
 **Репозиторий отчёта:** https://github.com/akamsoft/ansible-homework-05
+
 **Репозиторий с ролью Vector:** https://github.com/akamsoft/vector-role
+
 **Репозиторий с ролью LightHouse:** https://github.com/akamsoft/lighthouse-role
 
 ---
